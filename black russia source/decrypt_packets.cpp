@@ -1,3 +1,33 @@
+void cleanup(uint8_t** numArray1, int size) {
+    for (int i = 0; i < size; ++i) {
+        delete[] numArray1[i];
+    }
+    delete[] numArray1;
+}
+
+
+void numArray(uint8_t* array, int length) {
+    for (int i = 0; i < length; ++i) {
+        array[i] = sampDecrTable[array[i]];
+    }
+}
+
+void Log(const std::string& message) {
+    std::cout << message << std::endl;
+}
+
+std::string intToString(int number) {
+    return std::to_string(number);
+}
+
+std::string ByteArrayToHexString(const uint8_t* byteArray, int length) {
+    std::string result;
+    for (int i = 0; i < length; ++i) {
+        result += "0x" + std::to_string(byteArray[i]) + " ";
+    }
+    return result;
+}
+
 uint8_t* decryptpackets(unsigned char *buf, int length, int port) {
     if (buf[0] == 31) {
         uint8_t* numArray1 = new uint8_t[length - 5];
