@@ -1,6 +1,36 @@
 unsigned char encrBuffer[4092];
 unsigned char decrBuffer[4092];
 
+void cleanup(uint8_t** numArray1, int size) {
+    for (int i = 0; i < size; ++i) {
+        delete[] numArray1[i];
+    }
+    delete[] numArray1;
+}
+
+
+void numArray(uint8_t* array, int length) {
+    for (int i = 0; i < length; ++i) {
+        array[i] = sampDecrTable[array[i]];
+    }
+}
+
+void Log(const std::string& message) {
+    std::cout << message << std::endl;
+}
+
+std::string intToString(int number) {
+    return std::to_string(number);
+}
+
+std::string ByteArrayToHexString(const uint8_t* byteArray, int length) {
+    std::string result;
+    for (int i = 0; i < length; ++i) {
+        result += "0x" + std::to_string(byteArray[i]) + " ";
+    }
+    return result;
+}
+
 unsigned char sampEncrTable[256] =
 {
 	0x27, 0x69, 0xFD, 0x87, 0x60, 0x7D, 0x83, 0x02, 0xF2, 0x3F, 0x71, 0x99, 0xA3, 0x7C, 0x1B, 0x9D,
